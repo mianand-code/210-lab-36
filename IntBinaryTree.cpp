@@ -149,9 +149,22 @@ void StringBinaryTree::displayPostOrder(TreeNode *nodePtr) const {
 // - I am using the pre-existing "remove" and "insertNode" functions to implement this new function, so that the BST retains its ordered structure
 // - in order for the BST to retain its ordered structure, the pre-existing record has to first be removed and then the modified/new record has to be inserted after removal
 // - BST's do not retain their order automatically; it is up to us to write code that will ensure that the BST will remain ordered, no matter what operations are performed
-// note - 
+// - note - this function's modification process allows a record that already exists in the BST (a duplicate) to be inserted again, if the user wishes
 // ARGUMENTS: string record, which is the record we want to modify/remove
 // - string modifiedRecord, which is the record we want to insert/add after removing the pre-existing record
 // RETURNS: true or false, since this is a bool function
 // - true means that the record was found in the BST and modification was performed
 // - false means that the record was not found in the BST, so modification could not be performed
+bool StringBinaryTree::modify(string record, string modifiedRecord)
+{
+   // call the searchNode() function to check if the record we want to modify exists within the BST before proceeding
+   if (!searchNode(record)) // if the record was not found within the BST
+   {
+      cout << record << " was not found in the BST. Modification cannot be performed." << endl;
+      return false; // modification not performed
+   }
+
+   remove(record); // remove() function call, to remove the pre-existing record
+   insertNode(modifiedRecord); // insertNode() function call, to insert/add the modified record into the correct position in the BST
+   return true; // modification performed
+}
