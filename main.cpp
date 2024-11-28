@@ -44,27 +44,38 @@ int main()
     {
         // output the menu of choices that the user can select from
         cout << "Records BST Menu:" << endl;
-        cout << "[1] " << endl;
-        cout << "[2] " << endl;
-        cout << "[3] " << endl;
-        cout << "[4] " << endl;
+        cout << "[1] Add a record to the BST" << endl;
+        cout << "[2] Delete a record from the BST" << endl;
+        cout << "[3] Search for a record in the BST" << endl;
+        cout << "[4] Modify a pre-existing record in the BST" << endl;
         cout << "[5] Exit" << endl;
         cout << endl;
 
         // user input for menu option number they would like to choose
         cout << "Enter your choice: "; 
         cin >> userChoiceMenuNum;
+        cin.ignore(); // needed before reading string user input
 
         // creation of a switch statement that handles cases of each numbered option based on userChoiceMenuNum
         switch (userChoiceMenuNum)
         {
             case 1:
+                cout << "Enter the record you would like to add: ";
+                getline(cin, userChoiceRecord);
+                recordsTree.insertNode(userChoiceRecord); // insertNode() function call, to insert the user's record entry into the correct position within the BST
+                cout << userChoiceRecord << " has been added." << endl;
                 break;
 
             case 2:
+                cout << "Enter the record you would like to delete: ";
+                getline(cin, userChoiceRecord);
+                recordsTree.remove(userChoiceRecord); // remove() function call, to remove the user's record entry from the BST
+                cout << userChoiceRecord << " has been deleted." << endl;
                 break;
 
             case 3:
+                cout << "Enter the record you would like to search for: ";
+                getline(cin, userChoiceRecord);
                 break;
 
             case 4:
