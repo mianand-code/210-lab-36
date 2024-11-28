@@ -79,8 +79,13 @@ int main()
                     if (userChoiceRecord.empty())
                         cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
                 } while (userChoiceRecord.empty());
-                recordsTree.remove(userChoiceRecord); // remove() function call, to remove the user's record entry from the BST
-                cout << userChoiceRecord << " has been deleted." << endl;
+                if (recordsTree.searchNode(userChoiceRecord)) // call the searchNode() function to check if the record the user wants to delete exists in the BST before proceeding
+                {
+                    recordsTree.remove(userChoiceRecord); // remove() function call, to remove the user's record entry from the BST
+                    cout << userChoiceRecord << " has been deleted." << endl;
+                }
+                else // if the user-entered record was not found
+                    cout << userChoiceRecord << " does not exist. Deletion cannot be performed." << endl;
                 break;
 
             case 3:
