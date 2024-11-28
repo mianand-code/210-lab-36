@@ -1,6 +1,6 @@
 // Implementation file for the StringBinaryTree class
-#include <iostream>
 #include "IntBinaryTree.h"
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -42,7 +42,6 @@ void StringBinaryTree::destroySubTree(TreeNode *nodePtr) {
    }
 }
    
-
 // searchNode determines if a value is present in  
 // the tree. If so, the function returns true.     
 // Otherwise, it returns false.                    
@@ -76,7 +75,6 @@ void StringBinaryTree::deleteNode(string record, TreeNode *&nodePtr) {
    else
       makeDeletion(nodePtr);
 }
-
 
 // makeDeletion takes a reference to a pointer to the node 
 // that is to be deleted. The node is removed and the      
