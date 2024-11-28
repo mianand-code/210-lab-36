@@ -34,8 +34,53 @@ int main()
 
     while (getline(fin, record)) // read all of the records from the input file, until the end of the input file is reached
     {
-        recordsTree.insertNode(record);
+        recordsTree.insertNode(record); // call the insertNode() function, to insert the records from the input file into the BST
     }
+
+    fin.close(); // close the input file
+
+    // creation of a numbered menu that users can choose from to perform actions with the created BST
+    do  // creation of a do-while loop so that the user can continue to select options until they wish to quit
+    {
+        // output the menu of choices that the user can select from
+        cout << "Records BST Menu:" << endl;
+        cout << "[1] " << endl;
+        cout << "[2] " << endl;
+        cout << "[3] " << endl;
+        cout << "[4] " << endl;
+        cout << "[5] Exit" << endl;
+        cout << endl;
+
+        // user input for menu option number they would like to choose
+        cout << "Enter your choice: "; 
+        cin >> userChoiceMenuNum;
+
+        // creation of a switch statement that handles cases of each numbered option based on userChoiceMenuNum
+        switch (userChoiceMenuNum)
+        {
+            case 1:
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                break;
+            
+            // menu option #5 means the user wants to exit the program
+            case 5:
+                cout << "Thank you for using this program. Now exiting..." << endl;
+                break;
+            
+            // user input validation for menu option number (has to be 1-5)
+            default:
+                cout << "ERROR: Invalid entry. Please enter a valid menu option number (1-5) and try again." << endl << endl;
+        }
+
+    } while (userChoiceMenuNum != 5); // userChoice = 5 means user wants to quit program
 
     return 0;
 }
