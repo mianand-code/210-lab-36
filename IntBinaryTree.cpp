@@ -50,9 +50,9 @@ bool StringBinaryTree::searchNode(string record) {
    TreeNode *nodePtr = root;
 
    while (nodePtr)    {
-      if (nodePtr->value == num)
+      if (nodePtr->value == record)
          return true;
-      else if (num < nodePtr->value)
+      else if (record < nodePtr->value)
          nodePtr = nodePtr->left;
       else
          nodePtr = nodePtr->right;
@@ -61,18 +61,18 @@ bool StringBinaryTree::searchNode(string record) {
 }
 
 // remove calls deleteNode to delete the      
-// node whose value member is the same as num.
-void StringBinaryTree::remove(int num) {
-   deleteNode(num, root);
+// node whose value member is the same as record.
+void StringBinaryTree::remove(string record) {
+   deleteNode(record, root);
 }
 
 // deleteNode deletes the node whose value 
-// member is the same as num.              
-void StringBinaryTree::deleteNode(int num, TreeNode *&nodePtr) {
-   if (num < nodePtr->value)
-      deleteNode(num, nodePtr->left);
-   else if (num > nodePtr->value)
-      deleteNode(num, nodePtr->right);
+// member is the same as record.              
+void StringBinaryTree::deleteNode(string record, TreeNode *&nodePtr) {
+   if (record < nodePtr->value)
+      deleteNode(record, nodePtr->left);
+   else if (record > nodePtr->value)
+      deleteNode(record, nodePtr->right);
    else
       makeDeletion(nodePtr);
 }
@@ -142,3 +142,16 @@ void StringBinaryTree::displayPostOrder(TreeNode *nodePtr) const {
       cout << nodePtr->value << endl;
    }
 }
+
+// *** adding a new function to modify records ***
+// bool StringBinaryTree::modify(string record, string modifiedRecord) function header
+// DESCRIPTION: this function will allow the user to modify a record within the BST
+// - I am using the pre-existing "remove" and "insertNode" functions to implement this new function, so that the BST retains its ordered structure
+// - in order for the BST to retain its ordered structure, the pre-existing record has to first be removed and then the modified/new record has to be inserted after removal
+// - BST's do not retain their order automatically; it is up to us to write code that will ensure that the BST will remain ordered, no matter what operations are performed
+// note - 
+// ARGUMENTS: string record, which is the record we want to modify/remove
+// - string modifiedRecord, which is the record we want to insert/add after removing the pre-existing record
+// RETURNS: true or false, since this is a bool function
+// - true means that the record was found in the BST and modification was performed
+// - false means that the record was not found in the BST, so modification could not be performed
