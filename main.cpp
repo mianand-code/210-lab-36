@@ -76,9 +76,18 @@ int main()
             case 3:
                 cout << "Enter the record you would like to search for: ";
                 getline(cin, userChoiceRecord);
+                if (recordsTree.searchNode(userChoiceRecord)) // searchNode() function call, to determine if the user's record entry was found in the BST
+                    cout << userChoiceRecord << " was found in the BST." << endl;
+                else // if the user's record entry was not found in the BST
+                    cout << userChoiceRecord << " was NOT found in the BST." << endl;
                 break;
 
             case 4:
+                cout << "Enter the record you would like to modify: ";
+                getline(cin, oldRecord);
+                cout << "Enter the record you would now like to add: ";
+                getline(cin, userChoiceRecord);
+                recordsTree.modify(oldRecord, userChoiceRecord); // modify() function call, to delete the pre-existing/old record and add a new one in the correct ordered position within the BST
                 break;
             
             // menu option #5 means the user wants to exit the program
