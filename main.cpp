@@ -3,6 +3,7 @@
 // IDE used: Visual Studio Code for Mac
 
 // Implementation of menu-driven functionality + creation/population of the BST
+// Note: Program trusts that the user will enter records exactly the same as how they are listed in the input file in order to achieve accurate results
 
 #include <fstream> // needed for file operations
 #include "IntBinaryTree.h" // including the specification file for the StringBinaryTree class
@@ -43,7 +44,7 @@ int main()
     do  // creation of a do-while loop so that the user can continue to select options until they wish to quit
     {
         // output the menu of choices that the user can select from
-        cout << "Records BST Menu:" << endl;
+        cout << endl << "Records BST Menu:" << endl;
         cout << "[1] Add a record to the BST" << endl;
         cout << "[2] Delete a record from the BST" << endl;
         cout << "[3] Search for a record in the BST" << endl;
@@ -57,25 +58,38 @@ int main()
         cin.ignore(); // needed before reading string user input
 
         // creation of a switch statement that handles cases of each numbered option based on userChoiceMenuNum
+        // cases 1-4 include user input validation, to ensure that a user does not leave a field blank. Further input validation is not needed, since a record can consist of any combination of letters/numbers
         switch (userChoiceMenuNum)
         {
             case 1:
-                cout << "Enter the record you would like to add: ";
-                getline(cin, userChoiceRecord);
-                recordsTree.insertNode(userChoiceRecord); // insertNode() function call, to insert the user's record entry into the correct position within the BST
+                do {
+                    cout << "Enter the record you would like to add: ";
+                    getline(cin, userChoiceRecord);
+                    if (userChoiceRecord.empty())
+                        cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
+                } while (userChoiceRecord.empty());
+                recordsTree.insertNode(userChoiceRecord); // insertNode() function call, to insert the user's record entry into the correct position within the BST. A duplicate record may be added if the user wishes
                 cout << userChoiceRecord << " has been added." << endl;
                 break;
 
             case 2:
-                cout << "Enter the record you would like to delete: ";
-                getline(cin, userChoiceRecord);
+                do {
+                    cout << "Enter the record you would like to delete: ";
+                    getline(cin, userChoiceRecord);
+                    if (userChoiceRecord.empty())
+                        cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
+                } while (userChoiceRecord.empty());
                 recordsTree.remove(userChoiceRecord); // remove() function call, to remove the user's record entry from the BST
                 cout << userChoiceRecord << " has been deleted." << endl;
                 break;
 
             case 3:
-                cout << "Enter the record you would like to search for: ";
-                getline(cin, userChoiceRecord);
+                do {
+                    cout << "Enter the record you would like to search for: ";
+                    getline(cin, userChoiceRecord);
+                    if (userChoiceRecord.empty())
+                        cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
+                } while (userChoiceRecord.empty());
                 if (recordsTree.searchNode(userChoiceRecord)) // searchNode() function call, to determine if the user's record entry was found in the BST
                     cout << userChoiceRecord << " was found in the BST." << endl;
                 else // if the user's record entry was not found in the BST
@@ -83,11 +97,19 @@ int main()
                 break;
 
             case 4:
-                cout << "Enter the record you would like to modify: ";
-                getline(cin, oldRecord);
-                cout << "Enter the record you would now like to add: ";
-                getline(cin, userChoiceRecord);
-                recordsTree.modify(oldRecord, userChoiceRecord); // modify() function call, to delete the pre-existing/old record and add a new one in the correct ordered position within the BST
+                do {
+                    cout << "Enter the record you would like to modify: ";
+                    getline(cin, oldRecord);
+                    if (oldRecord.empty())
+                        cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
+                } while (oldRecord.empty());
+                do {
+                    cout << "Enter the record you would now like to add: ";
+                    getline(cin, userChoiceRecord);
+                    if (userChoiceRecord.empty())
+                        cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
+                } while (userChoiceRecord.empty());
+                recordsTree.modify(oldRecord, userChoiceRecord); // modify() function call, to delete the pre-existing/old record and add a new one in the correct ordered position within the BST. A duplicate record may be added if the user wishes
                 break;
             
             // menu option #5 means the user wants to exit the program
@@ -97,7 +119,7 @@ int main()
             
             // user input validation for menu option number (has to be 1-5)
             default:
-                cout << "ERROR: Invalid entry. Please enter a valid menu option number (1-5) and try again." << endl << endl;
+                cout << "ERROR: Invalid entry. Please enter a valid menu option number (1-5) and try again." << endl;
         }
 
     } while (userChoiceMenuNum != 5); // userChoice = 5 means user wants to quit program

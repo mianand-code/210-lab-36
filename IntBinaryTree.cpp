@@ -21,7 +21,7 @@ void StringBinaryTree::insert(TreeNode *&nodePtr, TreeNode *&newNode) {
 void StringBinaryTree::insertNode(string record) {
    TreeNode *newNode;      // Pointer to a new node.
 
-   // Create a new node and store num in it.
+   // Create a new node and store record in it.
    newNode = new TreeNode;
    newNode->value = record;
    newNode->left = newNode->right = nullptr;

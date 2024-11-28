@@ -1,6 +1,8 @@
 // Specification file for the StringBinaryTree class
 #ifndef INTBINARYTREE_H
 #define INTBINARYTREE_H
+#include <string> 
+using namespace std;
 
 // The StringBinaryTree class manages a binary tree of strings.
 class StringBinaryTree {
