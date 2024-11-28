@@ -18,10 +18,24 @@ int main()
     StringBinaryTree recordsTree; // creation of the BST
 
     // declaration of variables section
-    string record; // to hold a record from the input file
+    string record; // to hold a record from the input file - will be used to read records from the input file
     int userChoiceMenuNum; // to hold the user's choice of the menu option # they would like to select
-    string oldRecord; // to hold the user's input for the pre-existing record they want to modify
-    string userChoiceRecord; // to hold the user's input of a record
+    string userChoiceRecord; // to hold the user's input for a record they want to perform actions with - will be used with all menu functionalities
+    string oldRecord; // to hold the user's input for the pre-existing record they want to modify - will be used with the modify() function
+
+    ifstream fin(INPUT_FILE_NAME); // creation of an ifstream (input file) object
+    
+    // population of the BST - to hold records from the "codes.txt" (INPUT_FILE_NAME) file
+    if (!fin) // check if there was an error when opening the input file
+    {
+        cout << "ERROR: Could not open input file. Please make sure the file exists in the correct location & try running the program again." << endl;
+        return 1; // exit with an error state
+    }
+
+    while (getline(fin, record)) // read all of the records from the input file, until the end of the input file is reached
+    {
+        recordsTree.insertNode(record);
+    }
 
     return 0;
 }
