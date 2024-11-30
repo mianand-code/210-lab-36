@@ -1,4 +1,5 @@
 // Specification file for the StringBinaryTree class
+// *** Keeping the file name as "IntBinaryTree.h" in order to preserve commit history ***
 #ifndef INTBINARYTREE_H
 #define INTBINARYTREE_H
 #include <string> 
@@ -9,7 +10,7 @@ class StringBinaryTree {
 private:
    // TreeNode is a private structure for StringBinaryTree nodes.
    struct TreeNode {
-      string value;      // The value in the node
+      string value;      // The string value in the node
       TreeNode *left;    // Pointer to left child node
       TreeNode *right;   // Pointer to right child node
    };

@@ -1,4 +1,5 @@
 // Implementation file for the StringBinaryTree class
+// *** Keeping the file name as "IntBinaryTree.cpp" in order to preserve commit history ***
 #include "IntBinaryTree.h"
 #include <iostream>
 #include <string>
@@ -42,7 +43,7 @@ void StringBinaryTree::destroySubTree(TreeNode *nodePtr) {
    }
 }
    
-// searchNode determines if a value is present in  
+// searchNode determines if a string value is present in  
 // the tree. If so, the function returns true.     
 // Otherwise, it returns false.                    
 bool StringBinaryTree::searchNode(string record) {
@@ -143,7 +144,7 @@ void StringBinaryTree::displayPostOrder(TreeNode *nodePtr) const {
 
 // *** adding a new function to modify records ***
 // bool StringBinaryTree::modify(string record, string modifiedRecord) function header
-// DESCRIPTION: this function will allow the user to modify a record within the BST
+// DESCRIPTION: this function will allow the user to modify a record in the BST
 // - I am using the pre-existing "remove" and "insertNode" functions to implement this new function, so that the BST retains its ordered structure
 // - in order for the BST to retain its ordered structure, the pre-existing record has to first be removed and then the modified/new record has to be inserted after removal
 // - BST's do not retain their order automatically; it is up to us to write code that will ensure that the BST will remain ordered, no matter what operations are performed
@@ -155,14 +156,15 @@ void StringBinaryTree::displayPostOrder(TreeNode *nodePtr) const {
 // - false means that the record was not found in the BST, so modification could not be performed
 bool StringBinaryTree::modify(string record, string modifiedRecord)
 {
-   // call the searchNode() function to check if the record we want to modify exists within the BST before proceeding
-   if (!searchNode(record)) // if the record was not found within the BST
+   // call the searchNode() function to check if the record we want to modify exists in the BST before proceeding
+   if (!searchNode(record)) // if the record was not found in the BST
    {
       cout << record << " was not found in the BST. Modification cannot be performed." << endl;
       return false; // modification not performed
    }
 
    remove(record); // remove() function call, to remove the pre-existing record
-   insertNode(modifiedRecord); // insertNode() function call, to insert/add the modified record into the correct position in the BST
+   insertNode(modifiedRecord); // insertNode() function call, to insert/add the modified record into the correct position within the BST
+   cout << "The record has been modified." << endl;
    return true; // modification performed
 }

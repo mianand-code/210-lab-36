@@ -3,7 +3,7 @@
 // IDE used: Visual Studio Code for Mac
 
 // Implementation of menu-driven functionality + creation/population of the BST
-// Note: Program trusts that the user will enter records exactly the same as how they are listed in the input file in order to achieve accurate results
+// Note: The program trusts that the user will enter records exactly the same as how they are listed in the input file in order to achieve accurate results when deleting, searching for, and modifying records
 
 #include <fstream> // needed for file operations
 #include "IntBinaryTree.h" // including the specification file for the StringBinaryTree class
@@ -12,7 +12,7 @@
 using namespace std;
 
 // declaration and initialization of a global const string variable
-string INPUT_FILE_NAME = "codes.txt"; // to hold the name of the input file, which contains the data that will populate the BST
+string INPUT_FILE_NAME = "codes.txt"; // to hold the name of the input file, which contains the data that will be used to populate the BST
 
 int main() 
 {
@@ -20,8 +20,8 @@ int main()
 
     // declaration of variables section
     string record; // to hold a record from the input file - will be used to read records from the input file
-    int userChoiceMenuNum; // to hold the user's choice of the menu option # they would like to select
-    string userChoiceRecord; // to hold the user's input for a record they want to perform actions with - will be used with all menu functionalities
+    int userChoiceMenuNum; // to hold the user's choice for the menu option # they would like to select
+    string userChoiceRecord; // to hold the user's input for a record they want to perform an action with - will be used with delete, search, and modify functionalities
     string oldRecord; // to hold the user's input for the pre-existing record they want to modify - will be used with the modify() function
 
     ifstream fin(INPUT_FILE_NAME); // creation of an ifstream (input file) object
@@ -40,7 +40,7 @@ int main()
 
     fin.close(); // close the input file
 
-    // creation of a numbered menu that users can choose from to perform actions with the created BST
+    // creation of a numbered menu that users can choose from in order to perform various actions with the created BST
     do  // creation of a do-while loop so that the user can continue to select options until they wish to quit
     {
         // output the menu of choices that the user can select from
@@ -52,7 +52,7 @@ int main()
         cout << "[5] Exit" << endl;
         cout << endl;
 
-        // user input for menu option number they would like to choose
+        // user input for menu option # they would like to choose
         cout << "Enter your choice: "; 
         cin >> userChoiceMenuNum;
         cin.ignore(); // needed before reading string user input
@@ -79,12 +79,12 @@ int main()
                     if (userChoiceRecord.empty())
                         cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
                 } while (userChoiceRecord.empty());
-                if (recordsTree.searchNode(userChoiceRecord)) // call the searchNode() function to check if the record the user wants to delete exists in the BST before proceeding
+                if (recordsTree.searchNode(userChoiceRecord)) // searchNode() function call, to make sure that the record the user wants to delete exists in the BST before proceeding
                 {
                     recordsTree.remove(userChoiceRecord); // remove() function call, to remove the user's record entry from the BST
                     cout << userChoiceRecord << " has been deleted." << endl;
                 }
-                else // if the user-entered record was not found
+                else // if the user's record entry was not found
                     cout << userChoiceRecord << " does not exist. Deletion cannot be performed." << endl;
                 break;
 
@@ -95,7 +95,7 @@ int main()
                     if (userChoiceRecord.empty())
                         cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
                 } while (userChoiceRecord.empty());
-                if (recordsTree.searchNode(userChoiceRecord)) // searchNode() function call, to determine if the user's record entry was found in the BST
+                if (recordsTree.searchNode(userChoiceRecord)) // searchNode() function call, to check if the user's record entry was found in the BST
                     cout << userChoiceRecord << " was found in the BST." << endl;
                 else // if the user's record entry was not found in the BST
                     cout << userChoiceRecord << " was NOT found in the BST." << endl;
@@ -114,7 +114,7 @@ int main()
                     if (userChoiceRecord.empty())
                         cout << "ERROR: Field cannot remain blank. Please enter a record and try again." << endl;
                 } while (userChoiceRecord.empty());
-                recordsTree.modify(oldRecord, userChoiceRecord); // modify() function call, to delete the pre-existing/old record and add a new one in the correct ordered position within the BST. A duplicate record may be added if the user wishes
+                recordsTree.modify(oldRecord, userChoiceRecord); // modify() function call, to delete the pre-existing/old record and then add a new one in the correct ordered position within the BST. A duplicate record may be added if the user wishes
                 break;
             
             // menu option #5 means the user wants to exit the program
@@ -122,12 +122,12 @@ int main()
                 cout << "Thank you for using this program. Now exiting..." << endl;
                 break;
             
-            // user input validation for menu option number (has to be 1-5)
+            // user input validation for menu option # (has to be 1-5)
             default:
                 cout << "ERROR: Invalid entry. Please enter a valid menu option number (1-5) and try again." << endl;
         }
 
-    } while (userChoiceMenuNum != 5); // userChoice = 5 means user wants to quit program
+    } while (userChoiceMenuNum != 5); // userChoiceMenuNum = 5 means user wants to quit program
 
     return 0;
 }
